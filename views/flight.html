@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+{% if flight != null %}
+  From: {{flight.from}}<br>
+  To: {{flight.to}}<br>
+  Flight number: {{flight.flightNumber}}<br>
+  Date: {{flight.timestamp | date("Y-m-d H:i:s")}}<br>
+  ID: {{ flight._id|raw }}<br><br>
+
+  <strong>Crawl_Date, Price, Currency, Days_until_flight</strong><br>
+  {% for price in flight.prices %}
+    {{ price.crawlDate | date("Y-m-d") }}, {{ price.price.value|round(2) }}, {{ price.price.currencyCode }}, {{ (flight.timestamp - price.crawlDate)|toDays }}<br>
+  {% endfor %}
+
+{% else %}
+  There is no flight for the parameters received
+{% endif %}
+
+
+</body>
+</html>

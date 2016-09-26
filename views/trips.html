@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<ul>
+  {% for trip in trips %}
+    <li>{{ trip.out.from }} -> {{ trip.out.to }} ({{ trip.out.timestamp | date("Y-m-d") }}) | {{ trip.in.from }} -> {{ trip.in.to }} ({{ trip.in.timestamp | date("Y-m-d") }}) | Price: {{ (trip.out.lastPrice + trip.in.lastPrice)|round(2) }} € <a href="/trips/{{ trip.id|raw }}">>> Go</a> </li>
+  {% endfor %}
+</ul>
+</body>
+</html>

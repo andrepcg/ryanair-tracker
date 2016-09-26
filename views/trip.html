@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+{% if trip != null %}
+  <strong>Origin:</strong> {{trip.out.from}} ({{trip.out.flightNumber}})<br>
+  <strong>Destination:</strong> {{trip.out.to}} ({{trip.in.flightNumber}})<br>
+  <strong>Departure date:</strong> {{trip.out.timestamp | date("Y-m-d H:i:s")}}<br>
+  <strong>Return date:</strong> {{trip.in.timestamp | date("Y-m-d H:i:s")}}<br><br>
+
+  <strong>Crawl_Date, Price, Days_until_flight</strong><br>
+  {% for price in trip.sumPrices %}
+    {{ price.crawlDate | date("Y-m-d") }}, {{ price.price|round(2) }}, {{ (trip.out.timestamp - price.crawlDate)|toDays }}<br>
+  {% endfor %}
+
+{% else %}
+  There is no trip with the specified id
+{% endif %}
+</body>
+</html>

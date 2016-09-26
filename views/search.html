@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <a href="/search/{{ to }}-{{ from }}/{{ year }}-{{ month }}">Switch airports</a><br><br>
+  <strong>From: </strong>{{ from }}<br>
+  <strong>To: </strong>{{ to }}<br>
+  <strong>Date: </strong>{{ year }}-{{ month }}<br>
+
+  <ul>
+    {% for day in flights %}
+      <li>{{ loop.key }} - {{ day.price.value }} {{ day.price.currencySymbol }} (<a href="/flights/{{from}}-{{to}}/{{year}}-{{month}}-{{loop.key}}">Track</a>)</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

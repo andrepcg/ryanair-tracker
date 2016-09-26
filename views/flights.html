@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<ul>
+  {% for flight in flights %}
+  <li>{{flight.from}} -> {{flight.to}} ({{flight.date}}) <a href="/flights/{{flight.from}}-{{flight.to}}/{{flight.date}}">> Go</a> {% if flight.hasDiscount %}({{flight.hasDiscount}} €){% endif %}</li>
+  {% endfor %}
+</ul>
+</body>
+</html>
