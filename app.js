@@ -22,6 +22,7 @@ let flights = new router({ prefix: '/flights' });
 let trips = new router({ prefix: '/trips' });
 let search = new router({ prefix: '/search' });
 let routes = new router({ prefix: '/routes' });
+let stats = new router({ prefix: '/stats' });
 let home = new router();
 
 flights.get('/', flightsController.listFlights);
@@ -36,7 +37,8 @@ search.get('/:from-:to/:year-:month', searchController.search);
 routes.get('/', routesController.index);
 routes.get('/random', routesController.random);
 
-home.get('/stats', statsController.index)
+stats.get('/', statsController.index)
+
 home.get('/', function *() {
 	this.body = 'Héllo Uould'
 })
@@ -47,6 +49,7 @@ app
 	.use(flights.routes())
 	.use(search.routes())
 	.use(routes.routes())
+	.use(stats.routes())
 	//.use(flights.allowedMethods());
 
 if (!module.parent) {
